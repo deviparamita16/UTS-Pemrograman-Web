@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+ <!-- Memberi judul pada bagian judul viewport website -->   
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Datang di Kalkulator Sederhana</title>
+    <style>
+        /* Memberi warna pada halaman website */
+        html {
+            background-color: #87393c;
+        }   
+        /* Memberi warna, memilih font yang digunakan dan posisi teks di tengah pada class title */
+        .title {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: #980Df0;
+            text-align: center;
+        }
+        /* Memberi warna pada class title span */
+        .title span{
+            color: rgb(0, 179, 119);
+        }
+        /* Memberikan warna, bentuk teks, dan tampilan style pada class kalkulator */ 
+        .kalkulator{
+            background-color: white;
+            text-align: center;
+            padding: 20px;
+            border: 1px solid black;
+            margin-right: 20%;
+            margin-left: 20%;
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+        }
+        /* Memberikan warna dan tampilan stle pada class kalkulator input */ 
+        .kalkulator input {
+            padding: 15px;
+            background-color: #F0EDEE;
+            color: #0a890c;
+            border: none;
+        }
+        /* Memberikan warna dan bentuk teks center pada class kalkulator input placeholder */
+        .kalkulator input::placeholder {
+            color: #8a898c;
+            text-align: center;
+        }
+        /* Memberikan warna, bentuk teks center dan tampilan style pada class button */
+        button{
+            padding: 20px;
+            color: black;
+            border: none;
+            background-color: #98DDf0;
+            text-align: center;
+        }
+        /* Memberikan transition, warna dan tampilan style pada class button hover */
+        button:hover {
+            transition: .5s;
+            color: #07393c;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Membuat tag div class app sebagai pembungkus tampilan -->
+    <div id="app">
+        
+        <h1 v-bind:class="tampilan">Kalkulator Menggunakan <span>Vue JS</span></h1>
+        <div class="kalkulator">
+            <input type="text" placeholder="Masukkan angka pertama" id="angka1">
+            <input type="text" placeholder="Masukkan angka kedua" id="angka2">
+            <p>Pilih Operasi</p>
+        <div>
+            <button value="tambah" id="tambah" onClick="kal.tambah()">+</button>
+            <button value="kurang" id="kurang" onClick="kal.kurang()">-</button>
+            <button value="kali" id="kali" onClick="kal.kali()">*</button>
+            <button value="bagi" id="bagi" onClick="kal.bagi()">/</button>
+        </div>
+
+        <div> 
+            <p>{{ message }}</p>
+            <p>{{ hasil }}</p>
+            <p>{{ author }}</p>
+        </div>
+        </div>
+    </div>
+    <!-- Memanggil file vue.js pada folder lib -->  
+    <script src="lib/vue.js"></script>
+    <script>
+        var kal = new Vue({
+        el : '#app' ,
+        /* Memberi tampilan judul, hasil operasi, dan author pada halaman website */
+        data :{
+            tampilan: "title",
+            hasil : 0,
+            message:'hasil',
+            author: 'Ni Kadek Devi Paramita'
+        },
+        /* Memberi peringatan pada halaman website */
+        computed :{
+            mulai: function(){
+                alert("Selamat datang di pemrograman kalkulator sederhana")
+            }
+        },
+        /* Membuat object method untuk menampung fungsi yang akan digunakan */
+        methods:{
+            tambah() {
+                var angka1 = document.getElementById("angka1").value 
+                var angka2 = document.getElementById("angka2").value 
+                var hasil = parseInt(angka1) + parseInt(angka2)
+                this.hasil = angka1 + ' + ' + angka2 + ' = ' + hasil
+            },
+            kurang() {
+                var angka1 = document.getElementById("angka1").value 
+                var angka2 = document.getElementById("angka2").value 
+                var hasil = parseInt(angka1) - parseInt(angka2)
+                this.hasil = angka1 + ' - ' + angka2 + ' = ' + hasil  
+            },
+            kali() {
+                var angka1 = document.getElementById("angka1").value 
+                var angka2 = document.getElementById("angka2").value 
+                var hasil = parseInt(angka1) * parseInt(angka2)
+                this.hasil = angka1 + ' x ' + angka2 + ' = ' + hasil
+            },
+            bagi() {
+                var angka1 = document.getElementById("angka1").value 
+                var angka2 = document.getElementById("angka2").value 
+                var hasil = parseFloat(angka1) / parseFloat(angka2)
+                this.hasil = angka1 + ' / ' + angka2 + ' = ' + hasil
+            }
+        }    
+    });
+    </script>
+</body>
+</html>
